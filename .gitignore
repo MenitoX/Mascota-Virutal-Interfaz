@@ -1,0 +1,20 @@
+# Excluir la carpeta target completa
+target/
+
+# Excluir otros archivos y carpetas comúnmente no deseados en repositorios Git
+*.log
+*.tmp
+*.temp
+
+# Archivos de configuración específicos del entorno que no deben compartirse
+*.properties
+
+# IDE specific files to ignore
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# System files
+.DS_Store
+Thumbs.db

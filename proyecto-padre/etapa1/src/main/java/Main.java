@@ -2,24 +2,63 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
-import java.io.FileWriter;
+import java.io.InputStream;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Main extends Application{
     private Mascota mascota;
     private Inventario inventario;
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+    
+    static {
+        try {
+            FileHandler fileHandler = new FileHandler("app.log", true);
+            fileHandler.setLevel(Level.ALL);
+            LOGGER.addHandler(fileHandler);
+            LOGGER.setLevel(Level.ALL);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error al configurar el handler de archivo de log", e);
+        }
+    }
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        LOGGER.info("Registrando en archivo y consola 1 ");
+        try {
+            LOGGER.info("Registrando en archivo y consola 2");
+            Parent root = FXMLLoader.load(getClass().getResource("interfaz.fxml"));
+            primaryStage.setTitle("Simulación Mascota Virtual");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error al iniciar la aplicación", e);
+            // Manejo de error adecuado
+        }
+    }
 
     public static void main(String[] args) throws IOException {
-        // Carga de archivo config.csv
-        if (args.length != 1) {
-            System.out.println("Usage: java Main <config.csv>");
+        InputStream inputStream = Main.class.getResourceAsStream("/config.csv");
+        if (inputStream == null) {
+            System.out.println("El archivo config.csv no se encontró en los recursos.");
             System.exit(-1);
         }
 
-        Scanner in = new Scanner(new File(args[0]));
+        Scanner in = new Scanner(inputStream);
         Main stage1 = new Main();
         stage1.readConfiguration(in);
-        stage1.executeAction(new Scanner(System.in), System.out);
+        System.out.println("HOLA MUNDO");
+        launch(args);
+        //stage1.executeAction(new Scanner(System.in), System.out);
     }
 
     public void readConfiguration(Scanner in) {
