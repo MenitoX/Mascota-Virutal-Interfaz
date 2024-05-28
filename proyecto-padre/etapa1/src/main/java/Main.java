@@ -18,30 +18,16 @@ import java.util.logging.Logger;
 public class Main extends Application{
     private Mascota mascota;
     private Inventario inventario;
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-    
-    static {
-        try {
-            FileHandler fileHandler = new FileHandler("app.log", true);
-            fileHandler.setLevel(Level.ALL);
-            LOGGER.addHandler(fileHandler);
-            LOGGER.setLevel(Level.ALL);
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error al configurar el handler de archivo de log", e);
-        }
-    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LOGGER.info("Registrando en archivo y consola 1 ");
         try {
-            LOGGER.info("Registrando en archivo y consola 2");
             Parent root = FXMLLoader.load(getClass().getResource("interfaz.fxml"));
             primaryStage.setTitle("Simulación Mascota Virtual");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error al iniciar la aplicación", e);
             // Manejo de error adecuado
         }
     }
@@ -56,7 +42,7 @@ public class Main extends Application{
         Scanner in = new Scanner(inputStream);
         Main stage1 = new Main();
         stage1.readConfiguration(in);
-        System.out.println("HOLA MUNDO");
+        
         launch(args);
         //stage1.executeAction(new Scanner(System.in), System.out);
     }
