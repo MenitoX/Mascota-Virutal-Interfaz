@@ -38,16 +38,15 @@ public class Main extends Application{
             System.out.println("El archivo config.csv no se encontró en los recursos.");
             System.exit(-1);
         }
-
         Scanner in = new Scanner(inputStream);
         Main stage1 = new Main();
-        stage1.readConfiguration(in);
+        stage1.readConfiguration(in); // Mover todo esto a la etapa 4 que lee la configuración
         
         launch(args);
         //stage1.executeAction(new Scanner(System.in), System.out);
     }
 
-    public void readConfiguration(Scanner in) {
+    public void readConfiguration(Scanner in) { // Mover a la etapa 4
         // Creación de mascota
         String nombreMascota = in.nextLine();
         mascota = new Mascota(nombreMascota);
@@ -73,37 +72,6 @@ public class Main extends Application{
                     break;
             }
         }
-    }
-
-    public void executeAction(Scanner in, PrintStream out) {
-        String seleccion;
-        float tiempoSimulado = 0;
-
-        do {
-            printEstado(tiempoSimulado, out);
-            out.println("Seleccione un elemento del inventario, 'c' para continuar, y 'x' para salir:");
-            seleccion = in.nextLine();
-
-            if (seleccion.matches("\\d+")) {
-                if (seleccion.equals("0")) {
-                    //domir
-                    mascota.modificarEnergia(100);
-                    mascota.modificarSalud(15);
-                    mascota.modificarFelicidad(15);
-                    tiempoSimulado += 0.5;
-                    mascota.envejecer();
-                    continue;
-                }
-                int seleccionNum = Integer.parseInt(seleccion);
-                inventario.usarItem(seleccionNum-1, mascota);
-                tiempoSimulado += 0.5;
-                mascota.envejecer();
-            } else if (seleccion.equals("c")) {
-                tiempoSimulado += 0.5;
-                mascota.envejecer();
-            }
-        } while (!seleccion.equals("x") && mascota.getEstado() != Estado.Muerto);
-        printEstado(tiempoSimulado, out);
     }
 
     public void printEstado(float step, PrintStream out) {
