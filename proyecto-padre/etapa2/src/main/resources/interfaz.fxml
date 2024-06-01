@@ -12,6 +12,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.MyController">
    <children>
+      <MenuBar layoutX="0.0" layoutY="0.0">
+         <menus>
+            <Menu text="Inicio">
+               <items>
+                  <MenuItem fx:id="initAction" text="Iniciar" />
+                  <MenuItem fx:id="closeAction" text="Cerrar" />
+               </items>
+            </Menu>
+            <Menu text="Acciones">
+               <items>
+                  <MenuItem fx:id="lightsAction" text="Apagar luz" />
+               </items>
+            </Menu>
+            <Menu text="Help" />
+         </menus>
+      </MenuBar>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="290.0" layoutY="14.0">
          <image>
             <Image url="./background/background.png" />
