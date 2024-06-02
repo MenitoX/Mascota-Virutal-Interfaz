@@ -1,3 +1,4 @@
+package com.example;
 public enum Estado {
     Neutro,
     Feliz, 

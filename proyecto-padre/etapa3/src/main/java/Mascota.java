@@ -1,3 +1,6 @@
+package com.example;
+
+import com.example.Estado;
 
 public class Mascota {
     private String nombre;
@@ -49,11 +52,20 @@ public class Mascota {
 
     // Simular el paso del tiempo
     public void envejecer() {
-        edad += 0.5;
-        salud -= 5;
-        energia -= 5;
-        felicidad -= 5;
-        actualizarEstado();
+        if(estado != Estado.Muerto){
+            edad += 0.5;
+            if(salud>=5){
+                salud -= 5;
+            }
+            if(energia>=5){
+                energia -= 5;
+            }
+            if(felicidad>=5){
+                felicidad -= 5;
+            }
+            actualizarEstado();
+        }
+        
     }
 
     // Actualizar el estado de la mascota basado en sus atributos

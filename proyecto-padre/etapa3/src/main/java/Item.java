@@ -1,3 +1,4 @@
+package com.example;
 public abstract class Item {
     protected int id;
     protected String nombre;
