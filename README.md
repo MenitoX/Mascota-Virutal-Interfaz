@@ -4,3 +4,5 @@ Como ejecutar:
 
 - Navegar a la carpeta de la etapa elegida
 - ejecutar mvn clean javafx:run
+
+Gracias por ver.
