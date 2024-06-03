@@ -42,7 +42,10 @@ public class MyController {
     private ProgressBar healthBar, energyBar, happinessBar;
 
     @FXML
-    private ListView<String> foodList, medicineList;
+    private ListView<AnchorPane> foodList;
+    
+    @FXML
+    private ListView<AnchorPane> medicineList;
 
     @FXML
     private MenuItem initAction;
@@ -79,7 +82,19 @@ public class MyController {
     public void setFoodList(String[] food) {
         foodList.getItems().clear();
         for (String f : food) {
-            foodList.getItems().add(f);
+            String[] parts = f.split(";");
+            String name = parts[0];
+            String quantity = parts[1];
+    
+            Button foodButton = new Button(name);
+            Label quantityLabel = new Label("Cantidad: " + quantity);
+    
+            AnchorPane anchorPane = new AnchorPane();
+            AnchorPane.setLeftAnchor(foodButton, 0.0);
+            AnchorPane.setRightAnchor(quantityLabel, 0.0);
+    
+            anchorPane.getChildren().addAll(foodButton, quantityLabel);
+            foodList.getItems().add(anchorPane);
         }
     }
 
