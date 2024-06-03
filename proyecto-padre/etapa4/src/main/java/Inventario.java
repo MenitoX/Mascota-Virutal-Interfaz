@@ -33,17 +33,17 @@ public class Inventario {
         ArrayList<String> comida = new ArrayList<>();
         for (Item item : items) {
             if (item instanceof Comida) {
-                comida.add(item.nombre);
+                comida.add(item.nombre + ";" + item.cantidad);
             }
         }
         return comida.toArray(new String[0]);
     }
-
+    
     public String[] getMedicina() {
         ArrayList<String> medicina = new ArrayList<>();
         for (Item item : items) {
             if (item instanceof Medicina) {
-                medicina.add(item.nombre);
+                medicina.add(item.nombre + ";" + item.cantidad);
             }
         }
         return medicina.toArray(new String[0]);
