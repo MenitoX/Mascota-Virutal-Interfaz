@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -100,8 +102,20 @@ public class MyController {
 
     public void setMedicineList(String[] medicine) {
         medicineList.getItems().clear();
-        for (String m : medicine) {
-            medicineList.getItems().add(m);
+        for (String f : medicine) {
+            String[] parts = f.split(";");
+            String name = parts[0];
+            String quantity = parts[1];
+    
+            Button medicineButton = new Button(name);
+            Label quantityLabel = new Label("Cantidad: " + quantity);
+    
+            AnchorPane anchorPane = new AnchorPane();
+            AnchorPane.setLeftAnchor(medicineButton, 0.0);
+            AnchorPane.setRightAnchor(quantityLabel, 0.0);
+    
+            anchorPane.getChildren().addAll(medicineButton, quantityLabel);
+            foodList.getItems().add(anchorPane);
         }
     }
 

@@ -43,7 +43,7 @@ public class Inventario {
         ArrayList<String> medicina = new ArrayList<>();
         for (Item item : items) {
             if (item instanceof Medicina) {
-                medicina.add(item.nombre);
+                medicina.add(item.nombre + ";" + item.cantidad);
             }
         }
         return medicina.toArray(new String[0]);
